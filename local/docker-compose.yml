@@ -27,6 +27,13 @@ services:
     image: google/cadvisor:v0.33.0
     ports:
       - '8098:8098'
+    volumes:
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:ro'
+      - '/sys:/sys:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+      - '/dev/disk/:/dev/disk:ro'
+    privileged: true
     command:
       - '-port=8098'
 
