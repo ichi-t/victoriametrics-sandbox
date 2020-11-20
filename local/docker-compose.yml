@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.47.0
+    volumes:
+      - 'vm-data:/victoria-metrics-data'
+
+  prometheus:
+    image: prom/prometheus:v2.22.2
+    ports:
+      - '9090:9090'
+    volumes:
+      - type: bind
+        source: ./prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:7.3.3
+    ports:
+      - '3000:3000'
+    volumes:
+      - 'grafana-data:/usr/local/var/lib/grafana'
+
+volumes:
+  vm-data:
+  grafana-data:
