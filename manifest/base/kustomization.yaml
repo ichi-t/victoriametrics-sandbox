@@ -1,0 +1,4 @@
+commonLabels:
+  tier: metrics
+resources:
+  - victoriametrics-replicasets.yaml
