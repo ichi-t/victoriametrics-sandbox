@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: victoriametrics
+  labels:
+    app: victoriametrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: metrics
+  template:
+    metadata:
+      labels:
+        app: victoriametrics
+        tier: metrics
+    spec:
+      containers:
+      - name: victoriametrics
+        image: victoriametrics/victoria-metrics:v1.47.0
+        ports:
+        - containerPort: 8428
+  
